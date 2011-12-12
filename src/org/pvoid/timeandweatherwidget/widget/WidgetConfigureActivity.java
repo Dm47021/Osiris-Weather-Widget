@@ -30,7 +30,7 @@ public class WidgetConfigureActivity extends Activity
     if(WeatherRequest.getWeather(weather))
     {
       Storage.storeWeatherInfo(this, weather,_mWidgetId);
-      final RemoteViews views = TimeAndWeatherWidgetProvider.getWeatherView(this,weather);
+      final RemoteViews views = TimeAndWeatherWidgetProvider.getWeatherView(this,_mWidgetId,weather);
       final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
       appWidgetManager.updateAppWidget(_mWidgetId,views);
       ///// Tell WidgetManager that we are ready

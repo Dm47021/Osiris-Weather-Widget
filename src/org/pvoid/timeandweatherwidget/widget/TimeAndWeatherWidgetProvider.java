@@ -24,7 +24,7 @@ public class TimeAndWeatherWidgetProvider extends AppWidgetProvider
   private static final int    INTERVAL = 1000;
   private static final int    REQUEST_INTERVAL = 60*60*1000;
 
-  private static int getMonthName(int month)
+  public static int getMonthName(int month)
   {
     switch(month)
     {
@@ -47,7 +47,7 @@ public class TimeAndWeatherWidgetProvider extends AppWidgetProvider
     return 0;
   }
   
-  private static int getDayOfWeek(int dayOfWeek)
+  public static int getDayOfWeek(int dayOfWeek)
   {
     switch(dayOfWeek)
     {
@@ -69,7 +69,7 @@ public class TimeAndWeatherWidgetProvider extends AppWidgetProvider
     return 0;
   }
   
-  public static RemoteViews getWeatherView(Context context, WeatherInfo info)
+  public static RemoteViews getWeatherView(Context context, int widgetId, WeatherInfo info)
   {
     if(info==null)
       return null;
@@ -131,10 +131,11 @@ public class TimeAndWeatherWidgetProvider extends AppWidgetProvider
       }
     }
     if(foundClockImpl)
-      views.setOnClickPendingIntent(R.id.time_container,PendingIntent.getActivity(context, 0, alarmClockIntent, 0));
+      views.setOnClickPendingIntent(R.id.time_container,PendingIntent.getActivity(context, 0, alarmClockIntent, PendingIntent.FLAG_UPDATE_CURRENT));
 //////
     final Intent weatherIntent = new Intent(context, WeatherActivity.class);
-    final PendingIntent weatherPendingIntent = PendingIntent.getActivity(context,0,weatherIntent,0);
+    weatherIntent.putExtra(WeatherActivity.WIDGET_ID, widgetId);
+    final PendingIntent weatherPendingIntent = PendingIntent.getActivity(context,0,weatherIntent,PendingIntent.FLAG_UPDATE_CURRENT);
     views.setOnClickPendingIntent(R.id.weather_container, weatherPendingIntent);
 //////
     return views;
@@ -185,7 +186,7 @@ public class TimeAndWeatherWidgetProvider extends AppWidgetProvider
         requestThread.add(appWidgetIds[index]);
       }
 ////////
-      final RemoteViews views = getWeatherView(context,info);
+      final RemoteViews views = getWeatherView(context, appWidgetIds[index],info);
       if(views!=null)
         appWidgetManager.updateAppWidget(appWidgetIds[index],views);
     }
