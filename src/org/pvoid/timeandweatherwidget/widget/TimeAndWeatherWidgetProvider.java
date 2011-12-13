@@ -69,6 +69,32 @@ public class TimeAndWeatherWidgetProvider extends AppWidgetProvider
     return 0;
   }
   
+  public static int getWeatherIcon(int icon)
+  {
+    final Calendar calendar = Calendar.getInstance();
+    final int hours = calendar.get(Calendar.HOUR_OF_DAY);
+    if(hours>6 && hours<19)
+      return icon;
+    switch(icon)
+    {
+      case R.drawable.ic_chance_of_rain:
+        return R.drawable.ic_chance_of_rain_night;
+      case R.drawable.ic_chance_of_snow:
+        return R.drawable.ic_chance_of_snow_night;
+      case R.drawable.ic_chance_of_storm:
+        return R.drawable.ic_chance_of_storm_night;
+      case R.drawable.ic_cloudy:
+        return R.drawable.ic_cloudy;
+      case R.drawable.ic_mostly_cloudy:
+        return R.drawable.ic_mostly_cloudy_night;
+      case R.drawable.ic_mostly_sunny:
+        return R.drawable.ic_mostly_sunny_night;
+      case R.drawable.ic_sunny:
+        return R.drawable.ic_sunny_night;
+    }
+    return icon;
+  }
+  
   public static RemoteViews getWeatherView(Context context, int widgetId, WeatherInfo info)
   {
     if(info==null)
@@ -78,7 +104,7 @@ public class TimeAndWeatherWidgetProvider extends AppWidgetProvider
     final StringBuilder text = new StringBuilder();
 ////// Погода
     if(info.icon!=0)
-      views.setImageViewResource(R.id.weather_icon,info.icon);
+      views.setImageViewResource(R.id.weather_icon,getWeatherIcon(info.icon));
     text.append(info.temp).append("°");
     views.setTextViewText(R.id.temp,text.toString());
     views.setTextViewText(R.id.condition,info.condition);

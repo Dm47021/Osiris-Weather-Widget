@@ -3,6 +3,7 @@ package org.pvoid.timeandweatherwidget;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -16,7 +17,26 @@ import java.util.Calendar;
 public class WeatherActivity extends Activity
 {
   public static final String WIDGET_ID = "widget_id";
-  
+
+  private long _mUpdateDate;
+
+  private final Runnable _mUpdateTimeSpan = new Runnable()
+  {
+    public void run()
+    {
+      TextView text = (TextView) findViewById(R.id.refresh_time);
+      if(text!=null)
+      {
+        StringBuilder builder = new StringBuilder(", ");
+        builder.append(getString(R.string.updated)).append(": ")
+            .append(DateUtils.getRelativeTimeSpanString(_mUpdateDate, System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS));
+        text.setText(builder.toString());
+      }
+      _mHandler.postDelayed(_mUpdateTimeSpan,1000);
+    }
+  };
+  private final Handler _mHandler = new Handler();
+
   public void onCreate(Bundle savedInstanceState)
   {
     super.onCreate(savedInstanceState);
@@ -41,18 +61,22 @@ public class WeatherActivity extends Activity
     TextView text = (TextView)findViewById(R.id.city);
     if(text!=null)
       text.setText(capitalize(info.city));
+///////
+    _mUpdateDate = info.date;
     text = (TextView) findViewById(R.id.refresh_time);
     if(text!=null)
     {
       builder.append(", ").append(getString(R.string.updated)).append(": ")
-             .append(DateUtils.getRelativeTimeSpanString(info.date,System.currentTimeMillis(),DateUtils.SECOND_IN_MILLIS));
+             .append(DateUtils.getRelativeTimeSpanString(info.date, System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS));
       text.setText(builder.toString());
       builder.setLength(0);
     }
+/////// Установим таймер обновления
+    _mHandler.postDelayed(_mUpdateTimeSpan,1000);
 /////// Текущая погода
     ImageView icon = (ImageView)findViewById(R.id.current_weather_icon);
     if(icon!=null)
-      icon.setImageResource(info.icon);
+      icon.setImageResource(TimeAndWeatherWidgetProvider.getWeatherIcon(info.icon));
     text = (TextView)findViewById(R.id.current_temp);
     if(text!=null)
     {
@@ -75,6 +99,13 @@ public class WeatherActivity extends Activity
       calendar.add(Calendar.DAY_OF_WEEK,1);
       setForecastInfo(calendar,info.forecast[index]);
     }
+  }
+
+  @Override
+  protected void onDestroy()
+  {
+    _mHandler.removeCallbacks(_mUpdateTimeSpan);
+    super.onDestroy();
   }
 
   private void setForecastInfo(Calendar calendar, WeatherInfo.WeatherForecast forecast)
