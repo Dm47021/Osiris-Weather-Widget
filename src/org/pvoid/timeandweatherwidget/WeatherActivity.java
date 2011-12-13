@@ -3,6 +3,7 @@ package org.pvoid.timeandweatherwidget;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -35,12 +36,24 @@ public class WeatherActivity extends Activity
     }
 ///////
     setContentView(R.layout.weather_activity);
-/////// Текущая погода
     final StringBuilder builder = new StringBuilder();
+/////// Город и время обновления
+    TextView text = (TextView)findViewById(R.id.city);
+    if(text!=null)
+      text.setText(capitalize(info.city));
+    text = (TextView) findViewById(R.id.refresh_time);
+    if(text!=null)
+    {
+      builder.append(", ").append(getString(R.string.updated)).append(": ")
+             .append(DateUtils.getRelativeTimeSpanString(info.date,System.currentTimeMillis(),DateUtils.SECOND_IN_MILLIS));
+      text.setText(builder.toString());
+      builder.setLength(0);
+    }
+/////// Текущая погода
     ImageView icon = (ImageView)findViewById(R.id.current_weather_icon);
     if(icon!=null)
       icon.setImageResource(info.icon);
-    TextView text = (TextView)findViewById(R.id.current_temp);
+    text = (TextView)findViewById(R.id.current_temp);
     if(text!=null)
     {
       builder.append(info.temp).append("°");
@@ -83,16 +96,49 @@ public class WeatherActivity extends Activity
     ImageView icon = (ImageView)root.findViewById(R.id.forecast_weather_icon);
     if(icon!=null)
       icon.setImageResource(forecast.icon);
-    text = (TextView)root.findViewById(R.id.forecast_temp);
+    text = (TextView)root.findViewById(R.id.forecast_temp_min);
     if(text!=null)
     {
-      builder.append(forecast.temp_low).append("°").append("/").append(forecast.temp_high).append("°");
+      builder.append(forecast.temp_low).append("°");
       text.setText(builder.toString());
+      builder.setLength(0);
+    }
+    text = (TextView)root.findViewById(R.id.forecast_temp_max);
+    if(text!=null)
+    {
+      builder.append(forecast.temp_high).append("°");
+      text.setText(builder.toString());
+      builder.setLength(0);
     }
     text = (TextView)root.findViewById(R.id.forecast_condition);
     if(text!=null)
       text.setText(forecast.condition);
 ///////
     container.addView(root);
+  }
+  
+  private String capitalize(String text)
+  {
+    StringBuilder str = new StringBuilder();
+    char chars[] = text.toCharArray();
+    boolean space = true;
+///////
+    for(int index=0, count = chars.length; index<count; ++index)
+    {
+      if(chars[index]==' ' || chars[index]=='-')
+      {
+        space = true;
+        str.append(chars[index]);
+      }
+      else if(space)
+      {
+        str.append(Character.toUpperCase(chars[index]));
+        space = false;
+      }
+      else
+        str.append(chars[index]);
+    }
+///////
+    return str.toString();
   }
 }

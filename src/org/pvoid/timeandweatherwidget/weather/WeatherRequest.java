@@ -185,7 +185,7 @@ public class WeatherRequest
 
       if("chance_of_rain".equals(fileName))
         return R.drawable.ic_chance_of_rain;
-      if("chance_of_snow".equals(fileName))
+      if("chance_of_snow".equals(fileName) || "flurries".equals(fileName))
         return R.drawable.ic_chance_of_snow;
       if("chance_of_storm".equals(fileName))
         return R.drawable.ic_chance_of_storm;
@@ -193,7 +193,7 @@ public class WeatherRequest
         return R.drawable.ic_mist;
       if("mostly_cloudy".equals(fileName))
         return R.drawable.ic_mostly_cloudy;
-      if("mostly_sunny".equals(fileName))
+      if("mostly_sunny".equals(fileName) || "partly_cloudy".equals(fileName))
         return R.drawable.ic_mostly_sunny;
       if("rain".equals(fileName))
         return R.drawable.ic_rain;
@@ -205,8 +205,6 @@ public class WeatherRequest
         return R.drawable.ic_sunny;
       if("thunderstorm".equals(fileName))
         return R.drawable.ic_thunderstorm;
-      if("flurries".equals(fileName))
-        return R.drawable.ic_chance_of_snow;
       if("cloudy".equals(fileName))
         return R.drawable.ic_cloudy;
 

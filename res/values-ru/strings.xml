@@ -22,4 +22,7 @@
   <string name="saturday">Суббота</string>
   <string name="sunday">Воскресенье</string>
   <string name="today">Сегодня</string>
+  <string name="updated">обновлено</string>
+  <string name="min">мин: </string>
+  <string name="max">макс: </string>
 </resources>

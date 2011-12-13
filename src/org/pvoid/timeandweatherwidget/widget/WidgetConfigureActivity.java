@@ -26,7 +26,7 @@ public class WidgetConfigureActivity extends Activity
       return;
     }
 ////////
-    WeatherInfo weather = new WeatherInfo("kazan");
+    WeatherInfo weather = new WeatherInfo("казань");
     if(WeatherRequest.getWeather(weather))
     {
       Storage.storeWeatherInfo(this, weather,_mWidgetId);

@@ -22,4 +22,7 @@
   <string name="saturday">Saturday</string>
   <string name="sunday">Sunday</string>
   <string name="today">Today</string>
+  <string name="updated">updated</string>
+  <string name="min">min: </string>
+  <string name="max">max: </string>
 </resources>
