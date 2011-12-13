@@ -163,6 +163,23 @@ public class TimeAndWeatherWidgetProvider extends AppWidgetProvider
   }
 
   @Override
+  public void onDeleted(Context context, int[] appWidgetIds)
+  {
+    super.onDeleted(context, appWidgetIds);
+    for(int index=0, count=appWidgetIds.length; index<count; ++index)
+      Storage.deleteWeatherInfo(context,appWidgetIds[index]);
+  }
+
+  @Override
+  public void onDisabled(Context context)
+  {
+    super.onDisabled(context);
+    final AlarmManager am = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+    final PendingIntent pendingIntent = getPendingIntent(context);
+    am.cancel(pendingIntent);
+  }
+
+  @Override
   public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds)
   {
     setAlarm(context);
@@ -198,9 +215,14 @@ public class TimeAndWeatherWidgetProvider extends AppWidgetProvider
   private void setAlarm(Context context)
   {
     final AlarmManager am = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+    final PendingIntent pendingIntent = getPendingIntent(context);
+    am.set(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + INTERVAL,pendingIntent);
+  }
+
+  private PendingIntent getPendingIntent(Context context)
+  {
     final Intent intent = new Intent(context, TimeAndWeatherWidgetProvider.class);
     intent.setAction(WIDGET_UPDATE_ACTION);
-    final PendingIntent pendingIntent = PendingIntent.getBroadcast(context,0,intent,0);
-    am.set(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + INTERVAL,pendingIntent);
+    return PendingIntent.getBroadcast(context,0,intent,0);
   }
 }

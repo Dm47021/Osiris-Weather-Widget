@@ -54,7 +54,7 @@ public final class Storage
     final Parcel parcel = Parcel.obtain();
     final byte data[];
     final FileInputStream input;
-    StringBuilder path = new StringBuilder(context.getFilesDir().getAbsoluteFile().toString());
+    final StringBuilder path = new StringBuilder(context.getFilesDir().getAbsoluteFile().toString());
     path.append("/").append(String.valueOf(widgetId));
     final File file = new File(path.toString());
     /////
@@ -91,5 +91,13 @@ public final class Storage
     final WeatherInfo info = (WeatherInfo)parcel.readValue(WeatherInfo.class.getClassLoader());
     parcel.recycle();
     return info;
+  }
+
+  public static boolean deleteWeatherInfo(Context context, int widgetId)
+  {
+    final StringBuilder path = new StringBuilder(context.getFilesDir().getAbsoluteFile().toString());
+    path.append("/").append(String.valueOf(widgetId));
+    final File file = new File(path.toString());
+    return !file.exists() || file.delete();
   }
 }
