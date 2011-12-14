@@ -10,14 +10,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import org.pvoid.timeandweatherwidget.weather.WeatherInfo;
-import org.pvoid.timeandweatherwidget.widget.TimeAndWeatherWidgetProvider;
+import org.pvoid.timeandweatherwidget.widget.WidgetProvider;
 
 import java.util.Calendar;
 
 public class WeatherActivity extends Activity
 {
   public static final String WIDGET_ID = "widget_id";
-
   private long _mUpdateDate;
 
   private final Runnable _mUpdateTimeSpan = new Runnable()
@@ -76,7 +75,7 @@ public class WeatherActivity extends Activity
 /////// Текущая погода
     ImageView icon = (ImageView)findViewById(R.id.current_weather_icon);
     if(icon!=null)
-      icon.setImageResource(TimeAndWeatherWidgetProvider.getWeatherIcon(info.icon));
+      icon.setImageResource(WidgetProvider.getWeatherIcon(info.icon));
     text = (TextView)findViewById(R.id.current_temp);
     if(text!=null)
     {
@@ -117,8 +116,8 @@ public class WeatherActivity extends Activity
 ///////
     TextView text = (TextView)root.findViewById(R.id.forecast_day);
     if(text!=null)
-      text.setText(TimeAndWeatherWidgetProvider.getDayOfWeek(calendar.get(Calendar.DAY_OF_WEEK)));
-    builder.append(", ").append(calendar.get(Calendar.DAY_OF_MONTH)).append(' ').append(getString(TimeAndWeatherWidgetProvider.getMonthName(calendar.get(Calendar.MONTH))));
+      text.setText(WidgetProvider.getDayOfWeek(calendar.get(Calendar.DAY_OF_WEEK)));
+    builder.append(", ").append(calendar.get(Calendar.DAY_OF_MONTH)).append(' ').append(getString(WidgetProvider.getMonthName(calendar.get(Calendar.MONTH))));
     text = (TextView)root.findViewById(R.id.forecast_date);
     if(text!=null)
       text.setText(builder.toString());

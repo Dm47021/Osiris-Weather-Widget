@@ -25,4 +25,8 @@
   <string name="updated">updated</string>
   <string name="min">min: </string>
   <string name="max">max: </string>
+  <string name="source">Source:</string>
+  <string name="city">City:</string>
+  <string name="add_city">Add widget</string>
+  <string name="need_city">Please specify city</string>
 </resources>

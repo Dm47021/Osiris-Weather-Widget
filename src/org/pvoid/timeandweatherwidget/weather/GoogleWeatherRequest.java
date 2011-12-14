@@ -20,7 +20,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-public class WeatherRequest
+public class GoogleWeatherRequest
 {
   private final static String GOOGLE_WEATHER_API = "http://www.google.com/ig/api";
 

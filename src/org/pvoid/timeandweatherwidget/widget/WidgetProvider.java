@@ -18,7 +18,7 @@ import org.pvoid.timeandweatherwidget.weather.WeatherRequestThread;
 
 import java.util.Calendar;
 
-public class TimeAndWeatherWidgetProvider extends AppWidgetProvider
+public class WidgetProvider extends AppWidgetProvider
 {
   private static final String WIDGET_UPDATE_ACTION = "org.pvoid.timeandweatherwidget.widget.WIDGET_UPDATE_ACTION";
   private static final int    INTERVAL = 1000;
@@ -175,7 +175,7 @@ public class TimeAndWeatherWidgetProvider extends AppWidgetProvider
     if(WIDGET_UPDATE_ACTION.equals(action))
     {
       final AppWidgetManager manager = AppWidgetManager.getInstance(context);
-      int ids[] = manager.getAppWidgetIds(new ComponentName(context.getPackageName(), TimeAndWeatherWidgetProvider.class.getName()));
+      int ids[] = manager.getAppWidgetIds(new ComponentName(context.getPackageName(), WidgetProvider.class.getName()));
 //////////
       if(ids.length==0)
         return;
@@ -247,7 +247,7 @@ public class TimeAndWeatherWidgetProvider extends AppWidgetProvider
 
   private PendingIntent getPendingIntent(Context context)
   {
-    final Intent intent = new Intent(context, TimeAndWeatherWidgetProvider.class);
+    final Intent intent = new Intent(context, WidgetProvider.class);
     intent.setAction(WIDGET_UPDATE_ACTION);
     return PendingIntent.getBroadcast(context,0,intent,0);
   }

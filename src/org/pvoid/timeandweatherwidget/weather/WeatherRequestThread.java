@@ -44,7 +44,7 @@ public class WeatherRequestThread extends Thread
         WeatherInfo info = Storage.restoreWeatherInfo(_mContext,id);
         if(info==null)
           continue;
-        if(WeatherRequest.getWeather(info))
+        if(GoogleWeatherRequest.getWeather(info))
           Storage.storeWeatherInfo(_mContext,info,id);
       }
       _mWidgets.clear();

@@ -25,4 +25,8 @@
   <string name="updated">обновлено</string>
   <string name="min">мин: </string>
   <string name="max">макс: </string>
+  <string name="source">Источник:</string>
+  <string name="city">Город:</string>
+  <string name="add_city">Добавить виджет</string>
+  <string name="need_city">Укажите город пожалуйста</string>
 </resources>
