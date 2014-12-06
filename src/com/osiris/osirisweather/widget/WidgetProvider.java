@@ -20,7 +20,7 @@ import java.util.Calendar;
 
 public class WidgetProvider extends AppWidgetProvider
 {
-  private static final String WIDGET_UPDATE_ACTION = "org.pvoid.timeandweatherwidget.widget.WIDGET_UPDATE_ACTION";
+  private static final String WIDGET_UPDATE_ACTION = "com.osiris.osirisweather.widget.WIDGET_UPDATE_ACTION";
   private static final int    INTERVAL = 1000;
   private static final int    REQUEST_INTERVAL = 60*60*1000;
 
