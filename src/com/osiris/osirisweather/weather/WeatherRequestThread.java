@@ -1,9 +1,9 @@
-package org.pvoid.timeandweatherwidget.weather;
+package com.osiris.osirisweather.weather;
 
 import android.content.Context;
 import android.os.PowerManager;
 import android.util.Log;
-import org.pvoid.timeandweatherwidget.Storage;
+import com.osiris.osirisweather.Storage;
 
 import java.util.ArrayList;
 

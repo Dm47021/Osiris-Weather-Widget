@@ -1,4 +1,4 @@
-package org.pvoid.timeandweatherwidget.weather;
+package com.osiris.osirisweather.weather;
 
 import android.os.Parcel;
 import android.os.Parcelable;

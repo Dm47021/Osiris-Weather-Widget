@@ -1,4 +1,4 @@
-package org.pvoid.timeandweatherwidget.widget;
+package com.osiris.osirisweather.widget;
 
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
@@ -11,10 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import org.pvoid.timeandweatherwidget.R;
-import org.pvoid.timeandweatherwidget.Storage;
-import org.pvoid.timeandweatherwidget.weather.GoogleWeatherRequest;
-import org.pvoid.timeandweatherwidget.weather.WeatherInfo;
+import com.osiris.osirisweather.R;
+import com.osiris.osirisweather.Storage;
+import com.osiris.osirisweather.weather.GoogleWeatherRequest;
+import com.osiris.osirisweather.weather.WeatherInfo;
 
 public class WidgetConfigureActivity extends Activity implements View.OnClickListener
 {

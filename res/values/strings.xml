@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name">TimeAndWeather</string>
+  <string name="app_name">OsirisWeather</string>
   <string name="widget_name">Time&amp;Weather</string>
   <string name="widget_configure">Configure widget</string>
   <string name="january">January</string>

@@ -1,4 +1,4 @@
-package org.pvoid.timeandweatherwidget.widget;
+package com.osiris.osirisweather.widget;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -10,11 +10,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.SystemClock;
 import android.widget.RemoteViews;
-import org.pvoid.timeandweatherwidget.R;
-import org.pvoid.timeandweatherwidget.Storage;
-import org.pvoid.timeandweatherwidget.WeatherActivity;
-import org.pvoid.timeandweatherwidget.weather.WeatherInfo;
-import org.pvoid.timeandweatherwidget.weather.WeatherRequestThread;
+import com.osiris.osirisweather.R;
+import com.osiris.osirisweather.Storage;
+import com.osiris.osirisweather.WeatherActivity;
+import com.osiris.osirisweather.weather.WeatherInfo;
+import com.osiris.osirisweather.weather.WeatherRequestThread;
 
 import java.util.Calendar;
 

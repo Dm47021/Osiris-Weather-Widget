@@ -1,4 +1,4 @@
-package org.pvoid.timeandweatherwidget.weather;
+package com.osiris.osirisweather.weather;
 
 import android.net.Uri;
 import android.util.Log;
@@ -7,7 +7,7 @@ import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.pvoid.timeandweatherwidget.R;
+import com.osiris.osirisweather.R;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;

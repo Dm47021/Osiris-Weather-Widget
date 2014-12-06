@@ -1,4 +1,4 @@
-package org.pvoid.timeandweatherwidget;
+package com.osiris.osirisweather;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import org.pvoid.timeandweatherwidget.weather.WeatherInfo;
-import org.pvoid.timeandweatherwidget.widget.WidgetProvider;
+import com.osiris.osirisweather.weather.WeatherInfo;
+import com.osiris.osirisweather.widget.WidgetProvider;
 
 import java.util.Calendar;
 
